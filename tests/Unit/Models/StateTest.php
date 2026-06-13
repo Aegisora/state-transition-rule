@@ -57,6 +57,15 @@ class StateTest extends TestCase
     public static function getStateEqualityCheckProvidedDate(): array
     {
         return [
+            'source state name - not empty, target state name - not empty and equal' => [
+                'sourceStateData' => [
+                    'name' => 'foo',
+                ],
+                'targetStateData' => [
+                    'name' => 'foo',
+                ],
+                'isEqual' => true,
+            ],
             'source state name - empty, target state name - empty' => [
                 'sourceStateData' => [
                     'name' => '',
@@ -83,15 +92,6 @@ class StateTest extends TestCase
                     'name' => 'foo',
                 ],
                 'isEqual' => false,
-            ],
-            'source state name - not empty, target state name - not empty and equal' => [
-                'sourceStateData' => [
-                    'name' => 'foo',
-                ],
-                'targetStateData' => [
-                    'name' => 'foo',
-                ],
-                'isEqual' => true,
             ],
             'source state name - not empty, target state name - not empty and not equal' => [
                 'sourceStateData' => [
