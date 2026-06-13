@@ -40,6 +40,25 @@ class StateTest extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider getStateEqualityCheckProvidedDate
+     */
+    public function testIsEqual(
+        array $sourceStateData,
+        array $targetStateData,
+        bool $isEqual
+    ): void {
+        self::assertSame(
+            $isEqual,
+            State::create(...array_values($sourceStateData))->isEqual(State::create(...array_values($targetStateData)))
+        );
+    }
+
+    public static function getStateEqualityCheckProvidedDate(): array
+    {
+        return [];
+    }
+
     private static function assertActualStateEqualsExpected(
         State $actual,
         array $expectedData
