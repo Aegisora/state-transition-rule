@@ -20,7 +20,16 @@ class StateTest extends TestCase
 
     public static function getCreateStateProvidedData(): array
     {
-        return [];
+        return [
+            'state name - not empty' => [
+                'actualData' => [
+                    'name' => 'foo',
+                ],
+                'expectedData' => [
+                    'name' => 'foo',
+                ],
+            ],
+        ];
     }
 
     private static function assertActualStateEqualsExpected(
