@@ -75,6 +75,15 @@ class StateTest extends TestCase
                 ],
                 'isEqual' => false,
             ],
+            'source state name - empty, target state name - not empty' => [
+                'sourceStateData' => [
+                    'name' => '',
+                ],
+                'targetStateData' => [
+                    'name' => 'foo',
+                ],
+                'isEqual' => false,
+            ],
         ];
     }
 
