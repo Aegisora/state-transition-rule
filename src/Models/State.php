@@ -17,4 +17,9 @@ class State
     ): self {
         return new self($name);
     }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
