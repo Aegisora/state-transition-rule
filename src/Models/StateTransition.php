@@ -14,4 +14,11 @@ class StateTransition
         $this->from = $from;
         $this->to = $to;
     }
+
+    public static function create(
+        State $from,
+        State $to
+    ): self {
+        return new self($from, $to);
+    }
 }
