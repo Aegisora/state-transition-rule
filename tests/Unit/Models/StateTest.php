@@ -29,6 +29,14 @@ class StateTest extends TestCase
                     'name' => 'foo',
                 ],
             ],
+            'state name - empty' => [
+                'actualData' => [
+                    'name' => '',
+                ],
+                'expectedData' => [
+                    'name' => '',
+                ],
+            ],
         ];
     }
 
