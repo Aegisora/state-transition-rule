@@ -11,4 +11,10 @@ class State
     ) {
         $this->name = $name;
     }
+
+    public static function create(
+        string $name
+    ): self {
+        return new self($name);
+    }
 }
