@@ -18,6 +18,11 @@ class State
         return new self($name);
     }
 
+    public function isEqual(State $state): bool
+    {
+        return $this->getName() === $state->getName();
+    }
+
     public function getName(): string
     {
         return $this->name;
