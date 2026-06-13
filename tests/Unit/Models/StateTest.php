@@ -56,7 +56,17 @@ class StateTest extends TestCase
 
     public static function getStateEqualityCheckProvidedDate(): array
     {
-        return [];
+        return [
+            'source state name - empty, target state name - empty' => [
+                'sourceStateData' => [
+                    'name' => '',
+                ],
+                'targetStateData' => [
+                    'name' => '',
+                ],
+                'isEqual' => true,
+            ],
+        ];
     }
 
     private static function assertActualStateEqualsExpected(
