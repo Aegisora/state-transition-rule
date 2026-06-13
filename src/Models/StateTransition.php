@@ -21,4 +21,14 @@ class StateTransition
     ): self {
         return new self($from, $to);
     }
+
+    public function getFrom(): State
+    {
+        return $this->from;
+    }
+
+    public function getTo(): State
+    {
+        return $this->to;
+    }
 }
