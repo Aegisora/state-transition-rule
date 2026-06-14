@@ -34,4 +34,17 @@ class StateTransitionMap
     ): self {
         return new self($sourceState, $transitionStates);
     }
+
+    public function getSourceState(): State
+    {
+        return $this->sourceState;
+    }
+
+    /**
+     * @return State[]
+     */
+    public function getTransitionStates(): array
+    {
+        return $this->transitionStates;
+    }
 }
