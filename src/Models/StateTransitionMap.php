@@ -24,4 +24,14 @@ class StateTransitionMap
             }
         );
     }
+
+    /**
+     * @param State[] $transitionStates
+     */
+    public static function create(
+        State $sourceState,
+        array $transitionStates
+    ): self {
+        return new self($sourceState, $transitionStates);
+    }
 }
