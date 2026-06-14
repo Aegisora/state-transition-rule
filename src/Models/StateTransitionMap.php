@@ -7,7 +7,7 @@ class StateTransitionMap
     private State $sourceState;
 
     /** @var State[] */
-    private array $transitionStates = [];
+    private array $transitionStates;
 
     /**
      * @param State[] $transitionStates
