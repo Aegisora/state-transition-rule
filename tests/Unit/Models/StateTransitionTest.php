@@ -2,6 +2,7 @@
 
 namespace Aegisora\Rules\StateTransition\Tests\Unit\Models;
 
+use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransition;
 use PHPUnit\Framework\TestCase;
 
@@ -14,13 +15,44 @@ class StateTransitionTest extends TestCase
         array $actualData,
         array $expectedData
     ): void {
-        self::assertActualStateTransitionEqualsExpected(new StateTransition(...array_values($actualData)), $expectedData);
-        self::assertActualStateTransitionEqualsExpected(StateTransition::create(...array_values($actualData)), $expectedData);
+        self::assertActualStateTransitionEqualsExpected(
+            new StateTransition(
+                State::create(...array_values($actualData['from'])),
+                State::create(...array_values($actualData['to']))
+            ),
+            $expectedData
+        );
+        self::assertActualStateTransitionEqualsExpected(
+            StateTransition::create(
+                State::create(...array_values($actualData['from'])),
+                State::create(...array_values($actualData['to']))
+            ),
+            $expectedData
+        );
     }
 
     public static function getCreateStateTransitionProvidedData(): array
     {
-        return [];
+        return [
+            'state from name - not empty, state to name - not empty' => [
+                'actualData' => [
+                    'from' => [
+                        'name' => 'foo',
+                    ],
+                    'to' => [
+                        'name' => 'bar',
+                    ],
+                ],
+                'expectedData' => [
+                    'from' => [
+                        'name' => 'foo',
+                    ],
+                    'to' => [
+                        'name' => 'bar',
+                    ],
+                ],
+            ],
+        ];
     }
 
     private static function assertActualStateTransitionEqualsExpected(
