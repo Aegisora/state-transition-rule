@@ -52,6 +52,24 @@ class StateTransitionTest extends TestCase
                     ],
                 ],
             ],
+            'state from name - empty, state to name - empty' => [
+                'actualData' => [
+                    'from' => [
+                        'name' => '',
+                    ],
+                    'to' => [
+                        'name' => '',
+                    ],
+                ],
+                'expectedData' => [
+                    'from' => [
+                        'name' => '',
+                    ],
+                    'to' => [
+                        'name' => '',
+                    ],
+                ],
+            ],
         ];
     }
 
