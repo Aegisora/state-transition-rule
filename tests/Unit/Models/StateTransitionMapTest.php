@@ -83,6 +83,20 @@ class StateTransitionMapTest extends TestCase
                     'transitionStates' => [],
                 ],
             ],
+            'transition states - multiple not State objects' => [
+                'actualData' => [
+                    new State('foo'),
+                    [
+                        new stdClass(),
+                        new stdClass(),
+                        new stdClass(),
+                    ],
+                ],
+                'expectedData' => [
+                    'sourceState' => new State('foo'),
+                    'transitionStates' => [],
+                ],
+            ],
         ];
     }
 
