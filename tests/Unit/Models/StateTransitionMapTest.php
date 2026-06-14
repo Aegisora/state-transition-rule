@@ -2,6 +2,7 @@
 
 namespace Aegisora\Rules\StateTransition\Tests\Unit\Models;
 
+use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +27,18 @@ class StateTransitionMapTest extends TestCase
 
     public static function getCreateStateTransitionMapProvidedData(): array
     {
-        return [];
+        return [
+            'transition states - empty' => [
+                'actualData' => [
+                    new State('foo'),
+                    [],
+                ],
+                'expectedData' => [
+                    'sourceState' => new State('foo'),
+                    'transitionStates' => [],
+                ],
+            ],
+        ];
     }
 
     private static function assertActualStateTransitionMapEqualsExpected(
@@ -34,6 +46,6 @@ class StateTransitionMapTest extends TestCase
         array $expectedData
     ): void {
         self::assertEquals($expectedData['sourceState'], $actual->getSourceState());
-        self::assertEquals($expectedData['transitionState'], $actual->getTransitionStates());
+        self::assertEquals($expectedData['transitionStates'], $actual->getTransitionStates());
     }
 }
