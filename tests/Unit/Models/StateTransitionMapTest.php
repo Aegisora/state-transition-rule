@@ -5,6 +5,7 @@ namespace Aegisora\Rules\StateTransition\Tests\Unit\Models;
 use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 class StateTransitionMapTest extends TestCase
 {
@@ -68,6 +69,18 @@ class StateTransitionMapTest extends TestCase
                         new State('bar2'),
                         new State('bar3'),
                     ],
+                ],
+            ],
+            'transition states - one not State object' => [
+                'actualData' => [
+                    new State('foo'),
+                    [
+                        new stdClass(),
+                    ],
+                ],
+                'expectedData' => [
+                    'sourceState' => new State('foo'),
+                    'transitionStates' => [],
                 ],
             ],
         ];
