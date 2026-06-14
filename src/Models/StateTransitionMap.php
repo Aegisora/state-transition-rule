@@ -17,11 +17,13 @@ class StateTransitionMap
         array $transitionStates
     ) {
         $this->sourceState = $sourceState;
-        $this->transitionStates = array_filter(
-            $transitionStates,
-            static function ($transitionState): bool {
-                return $transitionState instanceof State;
-            }
+        $this->transitionStates = array_values(
+            array_filter(
+                $transitionStates,
+                static function ($transitionState): bool {
+                    return $transitionState instanceof State;
+                }
+            )
         );
     }
 
