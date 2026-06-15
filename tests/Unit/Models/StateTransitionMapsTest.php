@@ -114,6 +114,21 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - skips source states with non array transition states' => [
+                'rawData' => [
+                    ['StateA' => 'StateB'],
+                    ['StateB' => null],
+                    ['StateC' => 123],
+                    ['StateD' => true],
+                    ['StateE' => new stdClass()],
+                    ['StateF' => ['StateG']],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateF'), [new State('StateG'),]),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
