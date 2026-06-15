@@ -9,6 +9,9 @@ class StateTransitionMaps
      */
     private array $maps;
 
+    /**
+     * @param StateTransitionMap[] $maps
+     */
     public function __construct(
         array $maps
     ) {
