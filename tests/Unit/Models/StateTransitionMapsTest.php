@@ -164,6 +164,17 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - first valid source state wins' => [
+                'rawData' => [
+                    ['StateA' => ['StateB']],
+                    ['StateA' => ['StateC']],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), [new State('StateB'),]),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
