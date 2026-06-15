@@ -30,6 +30,7 @@ class StateTransitionMaps
      */
     public static function createFromArray(array $rawData): self
     {
+        /** @var StateTransitionMap[] $maps */
         $maps = [];
 
         foreach ($rawData as $stateTransitionMapRawData) {
@@ -43,6 +44,19 @@ class StateTransitionMaps
                 }
 
                 if (empty($sourceStateName)) {
+                    continue;
+                }
+
+                $alreadyHasMapWithSourceStateByName = false;
+
+                foreach ($maps as $map) {
+                    if ($map->getSourceState()->getName() === $sourceStateName) {
+                        $alreadyHasMapWithSourceStateByName = true;
+                        break;
+                    }
+                }
+
+                if ($alreadyHasMapWithSourceStateByName === true) {
                     continue;
                 }
 
