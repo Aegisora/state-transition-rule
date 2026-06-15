@@ -49,13 +49,13 @@ class StateTransitionMapsTest extends TestCase
                 'actualData' => [
                     new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar'),]),
                     new StateTransitionMap(new State('foo'), []),
-                    new StateTransitionMap(new State('foo'), [new State('bar'), ]),
+                    new StateTransitionMap(new State('foo'), [new State('bar'),]),
                 ],
                 'expectedData' => [
                     'maps' => [
                         new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar'),]),
                         new StateTransitionMap(new State('foo'), []),
-                        new StateTransitionMap(new State('foo'), [new State('bar'), ]),
+                        new StateTransitionMap(new State('foo'), [new State('bar'),]),
                     ],
                 ],
             ],
@@ -82,6 +82,20 @@ class StateTransitionMapsTest extends TestCase
                 'rawData' => [],
                 'expectedData' => [
                     'maps' => [],
+                ],
+            ],
+            'raw data - valid array' => [
+                'rawData' => [
+                    ['StateA' => [],],
+                    ['StateB' => ['StateD', 'StateC', 'StateE',],],
+                    ['StateC' => ['StateD'],],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), []),
+                        new StateTransitionMap(new State('StateB'), [new State('StateD'), new State('StateC'), new State('StateE'),]),
+                        new StateTransitionMap(new State('StateC'), [new State('StateD'),]),
+                    ],
                 ],
             ],
         ];
