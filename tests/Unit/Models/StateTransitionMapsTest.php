@@ -15,18 +15,25 @@ class StateTransitionMapsTest extends TestCase
         array $expectedData
     ): void {
         self::assertActualStateTransitionMapsEqualsExpected(
-            new StateTransitionMaps(...array_values($actualData)),
+            new StateTransitionMaps($actualData),
             $expectedData
         );
         self::assertActualStateTransitionMapsEqualsExpected(
-            StateTransitionMaps::create(...array_values($actualData)),
+            StateTransitionMaps::create($actualData),
             $expectedData
         );
     }
 
     public static function getCreateStateTransitionMapsProvidedData(): array
     {
-        return [];
+        return [
+            'map - empty' => [
+                'actualData' => [],
+                'expectedData' => [
+                    'maps' => [],
+                ],
+            ],
+        ];
     }
 
     private static function assertActualStateTransitionMapsEqualsExpected(
