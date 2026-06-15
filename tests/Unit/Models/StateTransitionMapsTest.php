@@ -195,7 +195,7 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
-            'raw data - with invalid elements' => [
+            'raw data - complex mixed payload is normalized' => [
                 'rawData' => [
                     ['StateA' => [],],
                     ['StateB' => ['StateD', 'StateC', 'StateE',],],
