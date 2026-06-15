@@ -37,11 +37,25 @@ class StateTransitionMapsTest extends TestCase
             ],
             'map - one state transition map' => [
                 'actualData' => [
-                    new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar')]),
+                    new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar'),]),
                 ],
                 'expectedData' => [
                     'maps' => [
-                        new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar')]),
+                        new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar'),]),
+                    ],
+                ],
+            ],
+            'map - multiple state transition maps' => [
+                'actualData' => [
+                    new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar'),]),
+                    new StateTransitionMap(new State('foo'), []),
+                    new StateTransitionMap(new State('foo'), [new State('bar'), ]),
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar'),]),
+                        new StateTransitionMap(new State('foo'), []),
+                        new StateTransitionMap(new State('foo'), [new State('bar'), ]),
                     ],
                 ],
             ],
