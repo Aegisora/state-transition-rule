@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1781443462">
-  <project timestamp="1781443462">
+<coverage generated="1781539827">
+  <project timestamp="1781539827">
     <file name="/home/runner/work/state-transition-rule/state-transition-rule/src/Models/State.php">
       <class name="Aegisora\Rules\StateTransition\Models\State" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="8" coveredelements="8"/>
@@ -52,6 +52,12 @@
       <line num="50" type="stmt" count="6"/>
       <metrics loc="53" ncloc="43" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="16" coveredelements="16"/>
     </file>
-    <metrics files="3" loc="119" ncloc="109" classes="3" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="33" coveredelements="33"/>
+    <file name="/home/runner/work/state-transition-rule/state-transition-rule/src/Models/StateTransitionMaps.php">
+      <class name="Aegisora\Rules\StateTransition\Models\StateTransitionMaps" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <metrics files="4" loc="127" ncloc="117" classes="3" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="33" coveredelements="33"/>
   </project>
 </coverage>
