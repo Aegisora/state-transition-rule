@@ -185,6 +185,16 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - transition state zero string is valid' => [
+                'rawData' => [
+                    ['StateA' => ['0', 'StateB']],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), [new State('0'), new State('StateB'),]),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
