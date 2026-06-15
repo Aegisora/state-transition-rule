@@ -175,6 +175,16 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - deduplicates transition states' => [
+                'rawData' => [
+                    ['StateA' => ['StateB', 'StateB', 'StateC', 'StateC']],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), [new State('StateB'), new State('StateC'),]),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
