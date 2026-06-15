@@ -23,6 +23,14 @@ class StateTransitionMaps
     }
 
     /**
+     * @param StateTransitionMap[] $maps
+     */
+    public static function create(array $maps): self
+    {
+        return new self($maps);
+    }
+
+    /**
      * @return StateTransitionMap[]
      */
     public function getMaps(): array
