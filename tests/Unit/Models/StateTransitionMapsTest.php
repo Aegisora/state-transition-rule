@@ -7,6 +7,28 @@ use PHPUnit\Framework\TestCase;
 
 class StateTransitionMapsTest extends TestCase
 {
+    /**
+     * @dataProvider getCreateStateTransitionMapsProvidedData
+     */
+    public function testCreate(
+        array $actualData,
+        array $expectedData
+    ): void {
+        self::assertActualStateTransitionMapsEqualsExpected(
+            new StateTransitionMaps(...array_values($actualData)),
+            $expectedData
+        );
+        self::assertActualStateTransitionMapsEqualsExpected(
+            StateTransitionMaps::create(...array_values($actualData)),
+            $expectedData
+        );
+    }
+
+    public static function getCreateStateTransitionMapsProvidedData(): array
+    {
+        return [];
+    }
+
     private static function assertActualStateTransitionMapsEqualsExpected(
         StateTransitionMaps $actual,
         array $expectedData
