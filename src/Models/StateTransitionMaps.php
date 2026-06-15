@@ -21,4 +21,12 @@ class StateTransitionMaps
             )
         );
     }
+
+    /**
+     * @return StateTransitionMap[]
+     */
+    public function getMaps(): array
+    {
+        return $this->maps;
+    }
 }
