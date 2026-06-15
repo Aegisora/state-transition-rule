@@ -33,6 +33,11 @@ class StateTransitionMaps
         /** @var StateTransitionMap[] $maps */
         $maps = [];
 
+        /**
+         * @var array<string, bool> $usedSourceStateNames
+         */
+        $usedSourceStateNames = [];
+
         foreach ($rawData as $stateTransitionMapRawData) {
             if (!is_array($stateTransitionMapRawData)) {
                 continue;
@@ -43,20 +48,11 @@ class StateTransitionMaps
                     continue;
                 }
 
-                if (empty($sourceStateName)) {
+                if ($sourceStateName === '') {
                     continue;
                 }
 
-                $alreadyHasMapWithSourceStateByName = false;
-
-                foreach ($maps as $map) {
-                    if ($map->getSourceState()->getName() === $sourceStateName) {
-                        $alreadyHasMapWithSourceStateByName = true;
-                        break;
-                    }
-                }
-
-                if ($alreadyHasMapWithSourceStateByName === true) {
+                if (isset($usedSourceStateNames[$sourceStateName])) {
                     continue;
                 }
 
@@ -64,21 +60,37 @@ class StateTransitionMaps
                     continue;
                 }
 
+                /** @var State[] $transitionStates */
                 $transitionStates = [];
+
+                /**
+                 * @var array<string, bool> $usedTransitionStateNames
+                 */
+                $usedTransitionStateNames = [];
 
                 foreach ($transitionStatesRawData as $transitionStateRawData) {
                     if (!is_string($transitionStateRawData)) {
                         continue;
                     }
 
-                    if (empty($transitionStateRawData)) {
+                    if ($transitionStateRawData === '') {
+                        continue;
+                    }
+
+                    if (isset($usedTransitionStateNames[$transitionStateRawData])) {
                         continue;
                     }
 
                     $transitionStates[] = State::create($transitionStateRawData);
+                    $usedTransitionStateNames[$transitionStateRawData] = true;
                 }
 
-                $maps[] = StateTransitionMap::create(State::create($sourceStateName), $transitionStates);
+                $maps[] = StateTransitionMap::create(
+                    State::create($sourceStateName),
+                    $transitionStates
+                );
+
+                $usedSourceStateNames[$sourceStateName] = true;
             }
         }
 

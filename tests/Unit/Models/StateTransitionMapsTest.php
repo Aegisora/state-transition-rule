@@ -99,6 +99,21 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - skips non array top level elements' => [
+                'rawData' => [
+                    null,
+                    123,
+                    'invalid',
+                    true,
+                    new stdClass(),
+                    ['StateA' => ['StateB']],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), [new State('StateB'),]),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
@@ -114,14 +129,21 @@ class StateTransitionMapsTest extends TestCase
                     ['StateD' => ['StateA', 0, 1, 'StateA', 0.1, 'StateB', true, 'StateC', false, '', new stdClass(), 'StateD', ''],],
                     ['StateD' => ['StateA', 0, 1, 'StateA', 0.1, 'StateB', true, 'StateC', false, '', new stdClass(), 'StateD', ''],],
                     ['StateE' => ['StateA', 0, 1, 'StateA', 0.1, 'StateB', true, 'StateC', false, '', new stdClass(), 'StateD', ''],],
+                    ['0' => ['StateA', 0, 1, 'StateA', 0.1, 'StateB', true, 'StateC', false, '', new stdClass(), 'StateD', ''],],
+                    ['0StateF' => ['StateA', 0, 1, 'StateA', 0.1, 'StateB', true, 'StateC', false, '', new stdClass(), 'StateD', ''],],
+                    ['StateF0' => ['StateA', 0, 1, 'StateA', 0.1, 'StateB', true, 'StateC', false, '', new stdClass(), 'StateD', ''],],
+                    ['0StateF0' => ['StateA', 0, 1, 'StateA', 0.1, 'StateB', true, 'StateC', false, '', new stdClass(), 'StateD', ''],],
                 ],
                 'expectedData' => [
                     'maps' => [
                         new StateTransitionMap(new State('StateA'), []),
                         new StateTransitionMap(new State('StateB'), [new State('StateD'), new State('StateC'), new State('StateE'),]),
                         new StateTransitionMap(new State('StateC'), [new State('StateD'),]),
-                        new StateTransitionMap(new State('StateD'), [new State('StateA'), new State('StateA'), new State('StateB'), new State('StateC'), new State('StateD'),]),
-                        new StateTransitionMap(new State('StateE'), [new State('StateA'), new State('StateA'), new State('StateB'), new State('StateC'), new State('StateD'),]),
+                        new StateTransitionMap(new State('StateD'), [new State('StateA'), new State('StateB'), new State('StateC'), new State('StateD'),]),
+                        new StateTransitionMap(new State('StateE'), [new State('StateA'), new State('StateB'), new State('StateC'), new State('StateD'),]),
+                        new StateTransitionMap(new State('0StateF'), [new State('StateA'), new State('StateB'), new State('StateC'), new State('StateD'),]),
+                        new StateTransitionMap(new State('StateF0'), [new State('StateA'), new State('StateB'), new State('StateC'), new State('StateD'),]),
+                        new StateTransitionMap(new State('0StateF0'), [new State('StateA'), new State('StateB'), new State('StateC'), new State('StateD'),]),
                     ],
                 ],
             ],
