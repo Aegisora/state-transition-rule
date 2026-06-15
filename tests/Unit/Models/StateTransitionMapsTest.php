@@ -153,6 +153,17 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - source state is not marked as used when transition states are invalid' => [
+                'rawData' => [
+                    ['StateA' => 'invalid'],
+                    ['StateA' => ['StateB']],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), [new State('StateB'),]),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
