@@ -2,6 +2,8 @@
 
 namespace Aegisora\Rules\StateTransition\Tests\Unit\Models;
 
+use Aegisora\Rules\StateTransition\Models\State;
+use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +33,16 @@ class StateTransitionMapsTest extends TestCase
                 'actualData' => [],
                 'expectedData' => [
                     'maps' => [],
+                ],
+            ],
+            'map - one state transition map' => [
+                'actualData' => [
+                    new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar')]),
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('foo'), [new State('bar'), new State('fooBar')]),
+                    ],
                 ],
             ],
         ];
