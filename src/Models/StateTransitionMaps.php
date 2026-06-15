@@ -25,6 +25,9 @@ class StateTransitionMaps
         );
     }
 
+    /**
+     * @param mixed[] $rawData
+     */
     public static function createFromArray(array $rawData): self
     {
         $maps = [];
