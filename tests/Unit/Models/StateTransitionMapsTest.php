@@ -62,6 +62,24 @@ class StateTransitionMapsTest extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider getCreateFromArrayStateTransitionMapsProvidedData
+     */
+    public function testCreateFromArray(
+        array $rawData,
+        array $expectedData
+    ): void {
+        self::assertActualStateTransitionMapsEqualsExpected(
+            StateTransitionMaps::createFromArray($rawData),
+            $expectedData
+        );
+    }
+
+    public static function getCreateFromArrayStateTransitionMapsProvidedData(): array
+    {
+        return [];
+    }
+
     private static function assertActualStateTransitionMapsEqualsExpected(
         StateTransitionMaps $actual,
         array $expectedData
