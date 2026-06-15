@@ -143,6 +143,16 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - creates map with empty transitions after filtering invalid values' => [
+                'rawData' => [
+                    ['StateA' => [0, 1, true, false, '', new stdClass()]],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), []),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
