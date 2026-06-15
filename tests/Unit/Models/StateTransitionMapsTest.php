@@ -129,6 +129,20 @@ class StateTransitionMapsTest extends TestCase
                     ],
                 ],
             ],
+            'raw data - multiple source states in one map array' => [
+                'rawData' => [
+                    [
+                        'StateA' => ['StateB'],
+                        'StateC' => ['StateD'],
+                    ],
+                ],
+                'expectedData' => [
+                    'maps' => [
+                        new StateTransitionMap(new State('StateA'), [new State('StateB')]),
+                        new StateTransitionMap(new State('StateC'), [new State('StateD')]),
+                    ],
+                ],
+            ],
             'raw data - with invalid elements' => [
                 'rawData' => [
                     ['StateA' => [],],
