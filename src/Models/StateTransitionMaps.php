@@ -46,6 +46,10 @@ class StateTransitionMaps
                     continue;
                 }
 
+                if (!is_array($transitionStatesRawData)) {
+                    continue;
+                }
+
                 $transitionStates = [];
 
                 foreach ($transitionStatesRawData as $transitionStateRawData) {
