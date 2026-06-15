@@ -77,7 +77,14 @@ class StateTransitionMapsTest extends TestCase
 
     public static function getCreateFromArrayStateTransitionMapsProvidedData(): array
     {
-        return [];
+        return [
+            'raw data - empty' => [
+                'rawData' => [],
+                'expectedData' => [
+                    'maps' => [],
+                ],
+            ],
+        ];
     }
 
     private static function assertActualStateTransitionMapsEqualsExpected(
