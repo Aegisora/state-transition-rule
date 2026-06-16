@@ -4,6 +4,7 @@ namespace Aegisora\Rules\StateTransition\Tests\Unit;
 
 use Aegisora\RuleContract\Exceptions\InvalidRuleContextException;
 use Aegisora\RuleContract\Models\Context;
+use Aegisora\RuleContract\Models\Result;
 use Aegisora\RuleContract\RuleInterface;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
 use Aegisora\Rules\StateTransition\StateTransitionRule;
@@ -82,6 +83,14 @@ class StateTransitionRuleTest extends TestCase
                 'value' => tmpfile(),
             ],
         ];
+    }
+
+    private static function assertActualResultEqualsExpected(
+        Result $actual,
+        array $expected
+    ): void {
+        self::assertSame($expected['isValid'], $actual->isValid());
+        self::assertSame($expected['failedRuleCode'], $actual->getFailedRuleCode());
     }
 
     /**
