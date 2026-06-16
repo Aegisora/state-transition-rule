@@ -8,6 +8,7 @@ use Aegisora\RuleContract\Models\Result;
 use Aegisora\RuleContract\RuleInterface;
 use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransition;
+use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
 use Aegisora\Rules\StateTransition\StateTransitionRule;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -41,6 +42,18 @@ class StateTransitionRuleTest extends TestCase
             'allowed transition maps - empty' => [
                 'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
                 'allowedTransitions' => StateTransitionMaps::create([]),
+                'expectedResultData' => [
+                    'isValid' => false,
+                    'failedRuleCode' => 'state_transition_rule',
+                ],
+            ],
+            'allowed transition maps - source state not exists' => [
+                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'allowedTransitions' => StateTransitionMaps::create([
+                    StateTransitionMap::create(State::create('StateB'), []),
+                    StateTransitionMap::create(State::create('StateC'), []),
+                    StateTransitionMap::create(State::create('StateD'), []),
+                ]),
                 'expectedResultData' => [
                     'isValid' => false,
                     'failedRuleCode' => 'state_transition_rule',
