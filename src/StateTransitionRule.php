@@ -36,6 +36,10 @@ class StateTransitionRule extends Rule
 
         $fromStateTransitionMap = $this->getSourceStateTransitionMap($stateTransition);
 
+        if (!$fromStateTransitionMap instanceof StateTransitionMap) {
+            return $this->getDefaultInvalidResult();
+        }
+
         // TODO: Implement executeValidate() method.
     }
 
