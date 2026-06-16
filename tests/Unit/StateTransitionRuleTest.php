@@ -111,6 +111,17 @@ class StateTransitionRuleTest extends TestCase
                     'failedRuleCode' => null,
                 ],
             ],
+            'allowed transition maps - first source state map wins when first is invalid' => [
+                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'allowedTransitions' => StateTransitionMaps::create([
+                    StateTransitionMap::create(State::create('StateA'), [State::create('StateC')]),
+                    StateTransitionMap::create(State::create('StateA'), [State::create('StateB')]),
+                ]),
+                'expectedResultData' => [
+                    'isValid' => false,
+                    'failedRuleCode' => 'state_transition_rule',
+                ],
+            ],
         ];
     }
 
