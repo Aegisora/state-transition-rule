@@ -37,6 +37,9 @@ class StateTransitionRuleTest extends TestCase
             'value - not empty string' => [
                 'value' => 'foo',
             ],
+            'value - empty string' => [
+                'value' => '',
+            ],
         ];
     }
 
