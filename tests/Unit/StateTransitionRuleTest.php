@@ -64,6 +64,9 @@ class StateTransitionRuleTest extends TestCase
             'value - boolean false' => [
                 'value' => false,
             ],
+            'value - empty array' => [
+                'value' => [],
+            ],
         ];
     }
 
