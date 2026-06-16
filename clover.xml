@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1781544069">
-  <project timestamp="1781544069">
+<coverage generated="1781625312">
+  <project timestamp="1781625312">
     <file name="/home/runner/work/state-transition-rule/state-transition-rule/src/Models/State.php">
       <class name="Aegisora\Rules\StateTransition\Models\State" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="8" coveredelements="8"/>
@@ -103,6 +103,14 @@
       <line num="113" type="stmt" count="14"/>
       <metrics loc="116" ncloc="93" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="41" coveredstatements="41" elements="45" coveredelements="45"/>
     </file>
-    <metrics files="4" loc="235" ncloc="202" classes="4" methods="16" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="62" coveredstatements="62" elements="78" coveredelements="78"/>
+    <file name="/home/runner/work/state-transition-rule/state-transition-rule/src/StateTransitionRule.php">
+      <class name="Aegisora\Rules\StateTransition\StateTransitionRule" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <metrics loc="17" ncloc="17" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
+    <metrics files="5" loc="252" ncloc="219" classes="5" methods="17" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="63" coveredstatements="62" elements="80" coveredelements="78"/>
   </project>
 </coverage>
