@@ -58,6 +58,9 @@ class StateTransitionRuleTest extends TestCase
             'value - negative float' => [
                 'value' => -0.1,
             ],
+            'value - boolean true' => [
+                'value' => true,
+            ],
         ];
     }
 
