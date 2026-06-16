@@ -20,6 +20,25 @@ class StateTransitionRuleTest extends TestCase
     }
 
     /**
+     * @dataProvider getValidateProvidedData
+     */
+    public function testValidate(
+        $contextValue,
+        StateTransitionMaps $allowedTransitions,
+        array $expectedResultData
+    ): void {
+        self::assertActualResultEqualsExpected(
+            StateTransitionRule::create($allowedTransitions)->validate($this->getContextMock(['value' => $contextValue,])),
+            $expectedResultData
+        );
+    }
+
+    public static function getValidateProvidedData(): array
+    {
+        return [];
+    }
+
+    /**
      * @dataProvider getInvalidContextProvidedData
      */
     public function testValidateFailedCauseInvalidContext(
