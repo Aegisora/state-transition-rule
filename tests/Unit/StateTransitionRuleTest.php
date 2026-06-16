@@ -109,7 +109,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - target state exists after non matching states' => [
-                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateD'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(
                         State::create('StateA'),
