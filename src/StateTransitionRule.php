@@ -13,4 +13,10 @@ class StateTransitionRule
     ) {
         $this->allowedTransitions = $allowedTransitions;
     }
+
+    public static function create(
+        StateTransitionMaps $allowedTransitions
+    ): self {
+        return new self($allowedTransitions);
+    }
 }
