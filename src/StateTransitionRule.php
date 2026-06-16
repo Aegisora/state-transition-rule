@@ -6,6 +6,7 @@ use Aegisora\RuleContract\Exceptions\InvalidRuleContextException;
 use Aegisora\RuleContract\Models\Context;
 use Aegisora\RuleContract\Models\Result;
 use Aegisora\RuleContract\Rule;
+use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransition;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
@@ -34,7 +35,7 @@ class StateTransitionRule extends Rule
             throw new InvalidRuleContextException();
         }
 
-        $fromStateTransitionMap = $this->getSourceStateTransitionMap($stateTransition);
+        $fromStateTransitionMap = $this->getSourceStateTransitionMap($stateTransition->getFrom());
 
         if (!$fromStateTransitionMap instanceof StateTransitionMap) {
             return $this->getDefaultInvalidResult();
@@ -43,10 +44,10 @@ class StateTransitionRule extends Rule
         // TODO: Implement executeValidate() method.
     }
 
-    private function getSourceStateTransitionMap(StateTransition $stateTransition): ?StateTransitionMap
+    private function getSourceStateTransitionMap(State $from): ?StateTransitionMap
     {
         foreach ($this->allowedTransitions->getMaps() as $stateTransitionMap) {
-            if ($stateTransitionMap->getSourceState()->isEqual($stateTransition->getFrom())) {
+            if ($stateTransitionMap->getSourceState()->isEqual($from)) {
                 return $stateTransitionMap;
             }
         }
