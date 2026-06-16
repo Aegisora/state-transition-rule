@@ -41,7 +41,9 @@ class StateTransitionRule extends Rule
             return $this->getDefaultInvalidResult();
         }
 
-        // TODO: Implement executeValidate() method.
+        return $this->isTransitionAllowed($stateTransition->getTo(), $fromStateTransitionMap->getTransitionStates()) ?
+            $this->getDefaultValidResult() :
+            $this->getDefaultInvalidResult();
     }
 
     private function getSourceStateTransitionMap(State $from): ?StateTransitionMap
