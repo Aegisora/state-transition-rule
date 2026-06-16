@@ -77,6 +77,9 @@ class StateTransitionRuleTest extends TestCase
             'value - callable' => [
                 'value' => static function () {},
             ],
+            'value - resource' => [
+                'value' => tmpfile(),
+            ],
         ];
     }
 
