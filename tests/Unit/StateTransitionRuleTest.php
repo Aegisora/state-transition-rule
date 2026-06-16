@@ -30,7 +30,11 @@ class StateTransitionRuleTest extends TestCase
 
     public static function getInvalidContextProvidedData(): array
     {
-        return [];
+        return [
+            'value - null' => [
+                'value' => null,
+            ],
+        ];
     }
 
     /**
