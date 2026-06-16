@@ -43,6 +43,9 @@ class StateTransitionRuleTest extends TestCase
             'value - zero integer' => [
                 'value' => 0,
             ],
+            'value - positive integer' => [
+                'value' => 1,
+            ],
         ];
     }
 
