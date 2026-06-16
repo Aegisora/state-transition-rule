@@ -7,6 +7,7 @@ use Aegisora\RuleContract\Models\Context;
 use Aegisora\RuleContract\Models\Result;
 use Aegisora\RuleContract\Rule;
 use Aegisora\Rules\StateTransition\Models\StateTransition;
+use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
 
 class StateTransitionRule extends Rule
@@ -33,6 +34,19 @@ class StateTransitionRule extends Rule
             throw new InvalidRuleContextException();
         }
 
+        $fromStateTransitionMap = $this->getSourceStateTransitionMap($stateTransition);
+
         // TODO: Implement executeValidate() method.
+    }
+
+    private function getSourceStateTransitionMap(StateTransition $stateTransition): ?StateTransitionMap
+    {
+        foreach ($this->allowedTransitions->getMaps() as $stateTransitionMap) {
+            if ($stateTransitionMap->getSourceState()->isEqual($stateTransition->getFrom())) {
+                return $stateTransitionMap;
+            }
+        }
+
+        return null;
     }
 }
