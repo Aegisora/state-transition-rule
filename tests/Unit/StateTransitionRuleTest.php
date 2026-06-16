@@ -98,6 +98,19 @@ class StateTransitionRuleTest extends TestCase
                     'failedRuleCode' => null,
                 ],
             ],
+            'allowed transition maps - target state exists after non matching states' => [
+                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateD')),
+                'allowedTransitions' => StateTransitionMaps::create([
+                    StateTransitionMap::create(
+                        State::create('StateA'),
+                        [State::create('StateB'), State::create('StateC'), State::create('StateD'),]
+                    ),
+                ]),
+                'expectedResultData' => [
+                    'isValid' => true,
+                    'failedRuleCode' => null,
+                ],
+            ],
         ];
     }
 
