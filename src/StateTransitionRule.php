@@ -54,4 +54,20 @@ class StateTransitionRule extends Rule
 
         return null;
     }
+
+    /**
+     * @param State[] $allowedTransitionStates
+     */
+    private function isTransitionAllowed(
+        State $to,
+        array $allowedTransitionStates
+    ): bool {
+        foreach ($allowedTransitionStates as $allowedTransitionState) {
+            if ($allowedTransitionState->isEqual($to)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
