@@ -9,6 +9,7 @@ use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
 use Aegisora\Rules\StateTransition\StateTransitionRule;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 class StateTransitionRuleTest extends TestCase
 {
@@ -69,6 +70,9 @@ class StateTransitionRuleTest extends TestCase
             ],
             'value - not empty array' => [
                 'value' => [1,],
+            ],
+            'value - object' => [
+                'value' => new stdClass(),
             ],
         ];
     }
