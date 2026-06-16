@@ -74,6 +74,9 @@ class StateTransitionRuleTest extends TestCase
             'value - object' => [
                 'value' => new stdClass(),
             ],
+            'value - callable' => [
+                'value' => static function () {},
+            ],
         ];
     }
 
