@@ -11,7 +11,6 @@ use Aegisora\Rules\StateTransition\Models\StateTransition;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
 use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
 use Aegisora\Rules\StateTransition\StateTransitionRule;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -26,12 +25,12 @@ class StateTransitionRuleTest extends TestCase
      * @dataProvider getValidateProvidedData
      */
     public function testValidate(
-        $contextValue,
+        Context $context,
         StateTransitionMaps $allowedTransitions,
         array $expectedResultData
     ): void {
         self::assertActualResultEqualsExpected(
-            StateTransitionRule::create($allowedTransitions)->validate($this->getContextMock(['value' => $contextValue,])),
+            StateTransitionRule::create($allowedTransitions)->validate($context),
             $expectedResultData
         );
     }
@@ -40,7 +39,7 @@ class StateTransitionRuleTest extends TestCase
     {
         return [
             'allowed transition maps - empty' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([]),
                 'expectedResultData' => [
                     'isValid' => false,
@@ -48,7 +47,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - source state not exists' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(State::create('StateB'), []),
                     StateTransitionMap::create(State::create('StateC'), []),
@@ -60,7 +59,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - source state exists, allowed transition states - empty' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(State::create('StateB'), []),
                     StateTransitionMap::create(State::create('StateC'), []),
@@ -73,7 +72,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - source state exists, allowed transition states - target state not exists' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(State::create('StateB'), []),
                     StateTransitionMap::create(State::create('StateC'), []),
@@ -86,7 +85,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - first source state map wins when first is invalid' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(State::create('StateA'), [State::create('StateC')]),
                     StateTransitionMap::create(State::create('StateA'), [State::create('StateB')]),
@@ -97,7 +96,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - source state exists, allowed transition states - target state exists' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(State::create('StateB'), []),
                     StateTransitionMap::create(State::create('StateC'), []),
@@ -110,7 +109,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - target state exists after non matching states' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateD')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(
                         State::create('StateA'),
@@ -123,7 +122,7 @@ class StateTransitionRuleTest extends TestCase
                 ],
             ],
             'allowed transition maps - first source state map wins when first is valid' => [
-                'contextValue' => StateTransition::create(State::create('StateA'), State::create('StateB')),
+                'context' => Context::create(StateTransition::create(State::create('StateA'), State::create('StateB'))),
                 'allowedTransitions' => StateTransitionMaps::create([
                     StateTransitionMap::create(State::create('StateA'), [State::create('StateB')]),
                     StateTransitionMap::create(State::create('StateA'), [State::create('StateC')]),
@@ -139,65 +138,66 @@ class StateTransitionRuleTest extends TestCase
     /**
      * @dataProvider getInvalidContextProvidedData
      */
-    public function testValidateFailedCauseInvalidContext(
-        $contextValue
-    ): void {
+    public function testValidateFailedCauseInvalidContext(Context $context): void
+    {
         $this->expectException(InvalidRuleContextException::class);
 
-        StateTransitionRule::create(StateTransitionMaps::create([]))->validate($this->getContextMock(['value' => $contextValue,]));
+        StateTransitionRule::create(StateTransitionMaps::create([]))->validate($context);
     }
 
     public static function getInvalidContextProvidedData(): array
     {
         return [
             'value - null' => [
-                'value' => null,
+                'value' => Context::create(null),
             ],
             'value - not empty string' => [
-                'value' => 'foo',
+                'value' => Context::create('foo'),
             ],
             'value - empty string' => [
-                'value' => '',
+                'value' => Context::create(''),
             ],
             'value - zero integer' => [
-                'value' => 0,
+                'value' => Context::create(0),
             ],
             'value - positive integer' => [
-                'value' => 1,
+                'value' => Context::create(1),
             ],
             'value - negative integer' => [
-                'value' => -1,
+                'value' => Context::create(-1),
             ],
             'value - zero float' => [
-                'value' => 0.0,
+                'value' => Context::create(0.0),
             ],
             'value - positive float' => [
-                'value' => 0.1,
+                'value' => Context::create(0.1),
             ],
             'value - negative float' => [
-                'value' => -0.1,
+                'value' => Context::create(-0.1),
             ],
             'value - boolean true' => [
-                'value' => true,
+                'value' => Context::create(true),
             ],
             'value - boolean false' => [
-                'value' => false,
+                'value' => Context::create(false),
             ],
             'value - empty array' => [
-                'value' => [],
+                'value' => Context::create([]),
             ],
             'value - not empty array' => [
-                'value' => [1,],
+                'value' => Context::create([1,]),
             ],
             'value - object' => [
-                'value' => new stdClass(),
+                'value' => Context::create(new stdClass()),
             ],
             'value - callable' => [
-                'value' => static function () {
-                },
+                'value' => Context::create(
+                    static function () {
+                    }
+                ),
             ],
             'value - resource' => [
-                'value' => tmpfile(),
+                'value' => Context::create(tmpfile()),
             ],
         ];
     }
@@ -208,17 +208,5 @@ class StateTransitionRuleTest extends TestCase
     ): void {
         self::assertSame($expected['isValid'], $actual->isValid());
         self::assertSame($expected['failedRuleCode'], $actual->getFailedRuleCode());
-    }
-
-    /**
-     * @return Context|MockObject
-     */
-    private function getContextMock(array $params = []): Context
-    {
-        /** @var Context|MockObject $mock */
-        $mock = $this->createMock(Context::class);
-        $mock->method('getValue')->willReturn($params['value'] ?? null);
-
-        return $mock;
     }
 }
