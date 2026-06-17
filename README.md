@@ -28,6 +28,14 @@ This rule is useful for validating workflows, status changes, lifecycle transiti
 
 ---
 
+## 📦 Installation
+
+```
+composer require aegisora/state-transition-rule
+```
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
