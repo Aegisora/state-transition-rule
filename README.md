@@ -56,6 +56,33 @@ The rule validates this transition against configured allowed transition maps.
 
 ---
 
+## 🏗️ Basic Usage
+
+```
+use Aegisora\RuleContract\Models\Context;
+use Aegisora\Rules\StateTransition\Models\State;
+use Aegisora\Rules\StateTransition\Models\StateTransition;
+use Aegisora\Rules\StateTransition\Models\StateTransitionMap;
+use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
+use Aegisora\Rules\StateTransition\StateTransitionRule;
+
+$allowedTransitions = StateTransitionMaps::create([
+    StateTransitionMap::create(State::create('draft'), [ State::create('paid'), State::create('cancelled'),]),
+    StateTransitionMap::create( State::create('paid'), [ State::create('shipped'), State::create('refunded'),]),
+]);
+
+$transition = StateTransition::create(State::create('draft'), State::create('paid'));
+$result = StateTransitionRule::create($allowedTransitions)->validate(Context::create($transition));
+
+if ($result->isValid()) {
+    // transition is allowed
+} else {
+    // transition is not allowed
+}
+```
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
