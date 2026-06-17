@@ -12,6 +12,22 @@ This rule is useful for validating workflows, status changes, lifecycle transiti
 
 ---
 
+## ✨ Features
+- 🔹 Lightweight and dependency-free except aegisora/rule-contract
+- 🔹 Validates transitions between named states
+- 🔹 Supports explicit allowed transition maps
+- 🔹 Supports array-based transition map creation
+- 🔹 Ignores invalid raw map data safely
+- 🔹 Deduplicates source states and transition states
+- 🔹 Fully compatible with Aegisora validation pipeline
+- 🔹 Strict Context → Result validation flow
+- 🔹 No raw booleans — only structured results
+- 🔹 Safe execution via base Rule abstraction
+- 🔹 Simple factory API (create)
+- 🔹 Ready to use out of the box
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
