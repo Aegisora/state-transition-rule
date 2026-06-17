@@ -20,9 +20,9 @@ This rule is useful for validating workflows, status changes, lifecycle transiti
 - 🔹 Ignores invalid raw map data safely
 - 🔹 Deduplicates source states and transition states
 - 🔹 Fully compatible with Aegisora validation pipeline
-- 🔹 Strict Context → Result validation flow
+- 🔹 Strict `Context` → `Result` validation flow
 - 🔹 No raw booleans — only structured results
-- 🔹 Safe execution via base Rule abstraction
+- 🔹 Safe execution via base `Rule` abstraction
 - 🔹 Simple factory API (create)
 - 🔹 Ready to use out of the box
 
@@ -33,6 +33,26 @@ This rule is useful for validating workflows, status changes, lifecycle transiti
 ```
 composer require aegisora/state-transition-rule
 ```
+
+---
+
+## 🚀 Core Concept
+
+This package implements a single validation rule:
+
+- accepts a `StateTransition` value via `Context`
+- checks whether transition `from` source state `to` target state is allowed
+- returns a standardized `Result`
+
+A transition is represented by two states:
+
+`from → to`
+
+Example:
+
+`draft → paid`
+
+The rule validates this transition against configured allowed transition maps.
 
 ---
 
