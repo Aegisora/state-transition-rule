@@ -110,6 +110,35 @@ if ($result->isValid()) {
 
 ---
 
+## 🧹 Raw Data Normalization
+
+`StateTransitionMaps::createFromArray()` safely normalizes raw transition data.
+
+It accepts only:
+- non-empty string source state names
+- array transition state lists
+- non-empty string transition state names
+
+Invalid values are ignored.
+
+Duplicate source states are skipped after the first valid occurrence.
+
+Duplicate transition states are also skipped.
+
+Example:
+
+```
+$allowedTransitions = StateTransitionMaps::createFromArray([
+    ['draft' => ['paid', 'paid', '', 123, true, 'cancelled',],],
+]);
+```
+
+The normalized map will contain:
+- `draft → paid`
+- `draft → cancelled`
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
