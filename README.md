@@ -83,6 +83,33 @@ if ($result->isValid()) {
 
 ---
 
+## 🧩 Array-Based Configuration
+
+Allowed transitions may be created from raw array data using `StateTransitionMaps::createFromArray()`.
+
+```
+use Aegisora\RuleContract\Models\Context;
+use Aegisora\Rules\StateTransition\Models\State;
+use Aegisora\Rules\StateTransition\Models\StateTransition;
+use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
+use Aegisora\Rules\StateTransition\StateTransitionRule;
+
+$allowedTransitions = StateTransitionMaps::createFromArray([
+    [ 'draft' => [ 'paid', 'cancelled', ],],
+    [ 'paid' => [ 'shipped', 'refunded', ],],
+    [ 'shipped' => [ 'completed',],],
+]);
+
+$transition = StateTransition::create(State::create('paid'), State::create('shipped'));
+$result = StateTransitionRule::create($allowedTransitions)->validate(Context::create($transition));
+
+if ($result->isValid()) {
+    // paid → shipped is allowed
+}
+```
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
