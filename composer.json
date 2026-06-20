@@ -1,17 +1,31 @@
 {
     "name": "aegisora/state-transition-rule",
-    "description": "<REPOSITORY_DESCRIPTION>",
+    "description": "Aegisora validation rule for checking allowed state transitions in Aegisora ecosystem",
     "type": "library",
-    "keywords": ["php", "aegisora", "aegisora-ecosystem"],
+    "keywords": [
+        "php",
+        "aegisora",
+        "aegisora-ecosystem",
+        "validation",
+        "validator",
+        "rule",
+        "state",
+        "state-transition",
+        "workflow",
+        "state-machine"
+    ],
     "homepage": "https://github.com/Aegisora/state-transition-rule",
+    "readme": "README.md",
     "support": {
         "issues": "https://github.com/Aegisora/state-transition-rule/issues",
-        "source": "https://github.com/Aegisora/state-transition-rule"
+        "source": "https://github.com/Aegisora/state-transition-rule",
+        "docs": "https://github.com/Aegisora/state-transition-rule#readme"
     },
     "authors": [
         {
             "name": "Arslan Imamutdinov",
-            "email": "ara.imamutdinov@gmail.com"
+            "email": "ara.imamutdinov@gmail.com",
+            "role": "Developer"
         }
     ],
     "license": "MIT",
@@ -33,5 +47,34 @@
         "psr-4": {
             "Aegisora\\Rules\\StateTransition\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist"
+    },
+    "archive": {
+        "exclude": [
+            "/.github",
+            "/tests",
+            "/vendor",
+            "/.gitignore",
+            "/badge.svg",
+            "/clover.xml",
+            "/composer.lock",
+            "/CONTRIBUTING.md",
+            "/docker-compose.yml",
+            "/Dockerfile",
+            "/docker-compose-up.sh",
+            "/docker-compose-down.sh",
+            "/docker-deploy.sh",
+            "/docker-run-checks.sh",
+            "/docker-run-phpcs.sh",
+            "/docker-run-phpstan.sh",
+            "/docker-run-unit-tests.sh",
+            "/phpcs.xml",
+            "/phpstan.neon.dist",
+            "/phpunit.xml"
+        ]
     }
 }
