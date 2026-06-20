@@ -30,7 +30,7 @@ This rule is useful for validating workflows, status changes, lifecycle transiti
 
 ## 📦 Installation
 
-```
+```bash
 composer require aegisora/state-transition-rule
 ```
 
@@ -58,7 +58,7 @@ The rule validates this transition against configured allowed transition maps.
 
 ## 🏗️ Basic Usage
 
-```
+```php
 use Aegisora\RuleContract\Models\Context;
 use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransition;
@@ -87,7 +87,7 @@ if ($result->isValid()) {
 
 Allowed transitions may be created from raw array data using `StateTransitionMaps::createFromArray()`.
 
-```
+```php
 use Aegisora\RuleContract\Models\Context;
 use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransition;
@@ -127,7 +127,7 @@ Duplicate transition states are also skipped.
 
 Example:
 
-```
+```php
 $allowedTransitions = StateTransitionMaps::createFromArray([
     ['draft' => ['paid', 'paid', '', 123, true, 'cancelled',],],
 ]);
@@ -151,7 +151,7 @@ Represents a named state.
 
 Represents transition from one state to another.
 
-```
+```php
 StateTransition::create(State::create('draft'), State::create('paid'));
 ```
 
@@ -159,7 +159,7 @@ StateTransition::create(State::create('draft'), State::create('paid'));
 
 Represents allowed target states for a single source state.
 
-```
+```php
 StateTransitionMap::create(
     State::create('draft'),
     [State::create('paid'), State::create('cancelled'),]
@@ -170,7 +170,7 @@ StateTransitionMap::create(
 
 Represents a collection of transition maps.
 
-```
+```php
 StateTransitionMaps::create([
     StateTransitionMap::create(State::create('draft'), [State::create('paid'),]),
 ]);
@@ -186,7 +186,7 @@ If transition is allowed, the rule returns a valid result.
 
 If transition is not allowed, the rule returns an invalid result.
 
-```
+```php
 $result->isValid(); // false
 $result->getFailedRuleCode(); // state_transition_rule
 ```
@@ -201,7 +201,7 @@ If the context value is not an instance of `StateTransition`, the rule throws:
 
 This rule can be used together with `aegisora/guardian` to build fluent validation pipelines.
 
-```
+```php
 use Aegisora\Guardian\Guardian;
 use Aegisora\Rules\StateTransition\Models\State;
 use Aegisora\Rules\StateTransition\Models\StateTransition;
@@ -232,7 +232,7 @@ State Transition Rule is useful for validating domain workflows.
 
 Examples
 
-```
+```text
 Order:
 
 draft → paid
@@ -241,7 +241,7 @@ paid → shipped
 
 shipped → completed
 ```
-```
+```text
 Payment:
 
 pending → approved
@@ -250,7 +250,7 @@ pending → declined
 
 approved → refunded
 ```
-```
+```text
 Ticket:
 
 open → in_progress
@@ -259,7 +259,7 @@ in_progress → resolved
 
 resolved → closed
 ```
-```
+```text
 Publication:
 
 draft → review
