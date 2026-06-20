@@ -12,6 +12,25 @@ This rule is useful for validating workflows, status changes, lifecycle transiti
 
 ---
 
+## 📑 Table of Contents
+- [Features](#-features)
+- [Installation](#-installation)
+- [Core Concept](#-core-concept)
+- [Basic Usage](#-basic-usage)
+- [Array-Based Configuration](#-array-based-configuration)
+- [Raw Data Normalization](#-raw-data-normalization)
+- [Models](#-models)
+- [Validation Result](#-validation-result)
+- [Guardian Usage](#-guardian-usage)
+- [Real-World Examples](#-real-world-examples)
+- [Factory Methods](#-factory-methods)
+- [Architecture](#-architecture)
+- [License](#-license)
+- [Contributing](#-contributing)
+- [Support](#-support)
+
+---
+
 ## ✨ Features
 - 🔹 Lightweight and dependency-free except aegisora/rule-contract
 - 🔹 Validates transitions between named states
