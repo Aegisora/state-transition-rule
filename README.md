@@ -226,6 +226,51 @@ If the transition is invalid, `Guardian` throws the provided domain exception.
 
 ---
 
+## 🧭 Real-World Examples
+
+State Transition Rule is useful for validating domain workflows.
+
+Examples
+
+```
+Order:
+
+draft → paid
+
+paid → shipped
+
+shipped → completed
+```
+```
+Payment:
+
+pending → approved
+
+pending → declined
+
+approved → refunded
+```
+```
+Ticket:
+
+open → in_progress
+
+in_progress → resolved
+
+resolved → closed
+```
+```
+Publication:
+
+draft → review
+
+review → published
+
+published → archived
+```
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
