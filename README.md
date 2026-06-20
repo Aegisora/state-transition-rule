@@ -178,6 +178,25 @@ StateTransitionMaps::create([
 
 ---
 
+## 🧪 Validation Result
+
+If transition is allowed, the rule returns a valid result.
+
+`$result->isValid(); // true`
+
+If transition is not allowed, the rule returns an invalid result.
+
+```
+$result->isValid(); // false
+$result->getFailedRuleCode(); // state_transition_rule
+```
+
+If the context value is not an instance of `StateTransition`, the rule throws:
+
+`Aegisora\RuleContract\Exceptions\InvalidRuleContextException`
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
