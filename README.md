@@ -294,6 +294,22 @@ published → archived
 
 ---
 
+## 🏛️ Architecture
+
+This package relies on `aegisora/rule-contract` (https://github.com/Aegisora/rule-contract).
+
+Flow:
+1. `validate()` is called 
+2. `Context` is passed in 
+3. `StateTransition` is extracted from context 
+4. Source state is searched in allowed transition maps 
+5. Target state is checked against allowed transition states 
+6. `Result` is returned
+
+All logic is safely handled by Rule contract.
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
