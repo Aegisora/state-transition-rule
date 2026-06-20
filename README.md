@@ -139,6 +139,45 @@ The normalized map will contain:
 
 ---
 
+## 🧱 Models
+
+### `State`
+
+Represents a named state.
+
+`State::create('draft');`
+
+### `StateTransition`
+
+Represents transition from one state to another.
+
+```
+StateTransition::create(State::create('draft'), State::create('paid'));
+```
+
+### `StateTransitionMap`
+
+Represents allowed target states for a single source state.
+
+```
+StateTransitionMap::create(
+    State::create('draft'),
+    [State::create('paid'), State::create('cancelled'),]
+);
+```
+
+### `StateTransitionMaps`
+
+Represents a collection of transition maps.
+
+```
+StateTransitionMaps::create([
+    StateTransitionMap::create(State::create('draft'), [State::create('paid'),]),
+]);
+```
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
