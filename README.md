@@ -271,6 +271,29 @@ published → archived
 
 ---
 
+## 🧩 Factory Methods
+`State::create($name);`
+- `$name` — state name
+
+`StateTransition::create($from, $to);`
+- `$from` — source `State`
+- `$to` — target `State`
+
+`StateTransitionMap::create($sourceState, $transitionStates);`
+- `$sourceState` — source `State`
+- `$transitionStates` — list of allowed target `State` objects
+
+`StateTransitionMaps::create($maps);`
+- `$maps` — list of `StateTransitionMap` objects
+
+`StateTransitionMaps::createFromArray($rawData);`
+- `$rawData` — raw transition map array
+
+`StateTransitionRule::create($allowedTransitions);`
+- `$allowedTransitions` — `StateTransitionMaps` instance
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
