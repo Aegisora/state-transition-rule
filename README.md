@@ -197,6 +197,35 @@ If the context value is not an instance of `StateTransition`, the rule throws:
 
 ---
 
+## 🔗 Guardian Usage
+
+This rule can be used together with `aegisora/guardian` to build fluent validation pipelines.
+
+```
+use Aegisora\Guardian\Guardian;
+use Aegisora\Rules\StateTransition\Models\State;
+use Aegisora\Rules\StateTransition\Models\StateTransition;
+use Aegisora\Rules\StateTransition\Models\StateTransitionMaps;
+use Aegisora\Rules\StateTransition\StateTransitionRule;
+use App\Exceptions\InvalidOrderStatusTransitionException;
+
+$guardian = new Guardian();
+
+$allowedTransitions = StateTransitionMaps::createFromArray([
+    ['draft' => ['paid', 'cancelled',],],
+    ['paid' => ['shipped', 'refunded',],],
+]);
+
+$guardian
+    ->that(StateTransition::create(State::create('draft'), State::create('paid')))
+    ->must(StateTransitionRule::create($allowedTransitions), new InvalidOrderStatusTransitionException())
+    ->validate();
+```
+
+If the transition is invalid, `Guardian` throws the provided domain exception.
+
+---
+
 ## ⚖️ License
 
 This package is open-source and licensed under the MIT License. See the LICENSE for details.
