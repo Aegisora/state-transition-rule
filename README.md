@@ -6,7 +6,7 @@
 
 State Transition Rule provides a simple, rule-based state transition validation implementation for the Aegisora ecosystem.
 
-It is built on top of aegisora/rule-contract (https://github.com/Aegisora/rule-contract) and follows its strict validation architecture, ensuring consistent and predictable behavior across applications.
+It is built on top of [`aegisora/rule-contract`](https://github.com/Aegisora/rule-contract) and follows its strict validation architecture, ensuring consistent and predictable behavior across applications.
 
 This rule is useful for validating workflows, status changes, lifecycle transitions, and domain state machines.
 
@@ -315,14 +315,14 @@ published → archived
 
 ## 🏛️ Architecture
 
-This package relies on `aegisora/rule-contract` (https://github.com/Aegisora/rule-contract).
+This package relies on [`aegisora/rule-contract`](https://github.com/Aegisora/rule-contract).
 
 Flow:
-1. `validate()` is called 
-2. `Context` is passed in 
-3. `StateTransition` is extracted from context 
-4. Source state is searched in allowed transition maps 
-5. Target state is checked against allowed transition states 
+1. `validate()` is called
+2. `Context` is passed in
+3. `StateTransition` is extracted from context
+4. Source state is searched in allowed transition maps
+5. Target state is checked against allowed transition states
 6. `Result` is returned
 
 All logic is safely handled by Rule contract.
@@ -331,13 +331,13 @@ All logic is safely handled by Rule contract.
 
 ## ⚖️ License
 
-This package is open-source and licensed under the MIT License. See the LICENSE for details.
+This package is open-source and licensed under the MIT License. See the [LICENSE](LICENSE) for details.
 
 ---
 
 ## 🌱 Contributing
 
-Contributions are welcome and greatly appreciated!. See the CONTRIBUTING for details.
+Contributions are welcome and greatly appreciated! See the [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ---
 
